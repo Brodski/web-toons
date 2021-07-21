@@ -57,7 +57,7 @@
     // "Base" email used for eveything.
     // It's a "base" email b/c all bots will look like "biggerpenisthanyoulol+0@gmail.com" , 0=some number
     let email = "biggerpenisthanyoulol@outlook.com"
-    // let email = "chrisyestheechris@outlook.com"
+    // let email = "cbrodski@gmail.com"
     let pw = "extrem3Pass!"
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,8 +67,9 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     let nickname = "Super_geranimo_"
-    let startAtEmail = 20
-    let numEmails = 50
+    // let nickname = "xxpoopysoupxx"
+    let startAtEmail = 190
+    let numEmails = 60
 
     // FOR YOUR FIRST TIME CREATING BOTS THE "startAtEmail" VARIABLE MUST BE 0
     // Fill in your password and "base" nickname and "base" email
@@ -101,15 +102,13 @@
 
     // numUpVotes must be equal to or less than the number of your 'bots'
     // Each page gets x "numUpVotes" (eg 10 upvotes to each page)
-    let numUpVotes = 70
-    let startAtAccount = 20
-    let allPagesToUpVote = [ "https://www.webtoons.com/en/challenge/austinxmatty/title/viewer?title_no=663995&episode_no=1",
-                            // "https://www.webtoons.com/en/sports/the-boxer/ep-68-family/viewer?title_no=2027&episode_no=73",
-                            //  "https://www.webtoons.com/en/sports/the-boxer/ep-67-blood/viewer?title_no=2027&episode_no=72",
-                            "https://www.webtoons.com/en/challenge/austinxmatty/1/viewer?title_no=663995&episode_no=2"
+    let numUpVotes = 250
+    let startAtAccount = 0
+    let allPagesToUpVote = [ "https://www.webtoons.com/en/challenge/austinxmatty/3/viewer?title_no=663995&episode_no=11",
+//                            "https://www.webtoons.com/en/challenge/austinxmatty/100-subs/viewer?title_no=663995&episode_no=6"
                             ]
-    let restPerPage = 2     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
-    let restPerAccount =  3 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
+    let restPerPage = 0     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
+    let restPerAccount =  0 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,7 +410,7 @@
         await doReadyCheck()
         if (sessionStorage.getItem("isSwitchAccounts_logout") == "true") {
             console.log("commandUpVoting - logging out")
-            await sleep(2000)
+            await sleep(1000)
             sessionStorage.setItem("isSwitchAccounts_logout", false)
             sessionStorage.setItem("isSwitchAccounts_login", true)
             return doLogoutAndGo2Home()
@@ -486,7 +485,7 @@
         await doReadyCheck()
         // document.cookie = "NEO_SES= ; path=/; domain=.webtoons.com; expires = Thu, 01 Jan 1970 00:00:00 GMT";
         deleteAllCookies()
-        await sleep(500)
+        await sleep(250)
         console.log("doLogoutAndRefresh - User is logged out")
         // location.reload()
         window.location.href = "https://www.webtoons.com/en/"
@@ -528,15 +527,15 @@
 
             if (!isLikeOn) {
                 like.click()
-                await sleep(250)
+                await sleep(50)
             }
 
             if (!isSubbedOn) {
                 subscribe.click()
-                await sleep(250)
+                await sleep(50)
             }
 
-            await sleep(500)
+            await sleep(100)
         }
     }
 
@@ -566,7 +565,7 @@
     async function doLogin() {
         await doReadyCheck()
         console.log("Logging in")
-        await sleep(500)
+        await sleep(1000)
 
         if (isLogged()) {
             console.log("User is already logged!!! Nothing to do.")
@@ -574,52 +573,32 @@
         }
         if ( document.getElementById("btnLogin")){
             console.log("Logging in - btnLogin")
-            await sleep(500)
-
             const evt = new Event("click", {"view": window, "bubbles":true, "cancelable":false});
-
-            // console.log("Logging in1")
-            // const evt2 = new Event("mouseover", {"view": window, "bubbles":true, "cancelable":false});
-            // const evt3 = new Event("mousedown", {"view": window, "bubbles":true, "cancelable":false});
-            // const evt4 = new Event("mouseup", {"view": window, "bubbles":true, "cancelable":false});
-            // const evt5 = new Event("mouseenter", {"view": window, "bubbles":true, "cancelable":false});
-            // document.getElementById("btnLogin").dispatchEvent(evt5)
-            // await sleep(500)
-            // document.getElementById("btnLogin").dispatchEvent(evt2)
-            // await sleep(500)
-            // document.getElementById("btnLogin").dispatchEvent(evt3)
-            // await sleep(500)
             // document.getElementById("btnLogin").dispatchEvent(evt4)
-            await sleep(500)
+            //   const evt = new Event("click", {"view": window, "bubbles":true, "cancelable":false});
+            await sleep(200)
             document.getElementById("btnLogin").dispatchEvent(evt)
-            // await sleep(500)
-          //   document.getElementById("btnLogin").click()
-          //   let event = new UIEvent("click")
-          //   document.getElementById("btnLogin").dispatchEvent(event)
-          //   const evt = new Event("click", {"view": window, "bubbles":true, "cancelable":false});
-          //   sayingHi()
         }
         else if (document.getElementById("likeItButton")) {
             console.log("Logging in - likeItButton")
-            await sleep(1000)
             document.getElementById("likeItButton").click()
         }
 
-        await sleep(1000)
+        await sleep(500)
         console.log("Logging in - filling out form...")
 
         let preEmail = email.split("@")
         let loginEmail = preEmail[0] + "+" + sessionStorage.getItem("botIndex") + "@" + preEmail[1]
 
-        await sleep(100)
+        await sleep(200)
         document.getElementById("emailId").value = loginEmail
-        await sleep(100)
+        await sleep(200)
         document.getElementById("password").value = pw
-        await sleep(500)
+        await sleep(300)
 
         document.getElementsByClassName("NPI=a:email")[0].click()
         console.log("Logging in - CLICK!")
-        await sleep(1000)
+        await sleep(300)
         return
 
     }
