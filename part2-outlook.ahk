@@ -13,10 +13,28 @@ F10::
         ; WinActivate, Inbox.*\scbrodski@gmail.com\s-\sGmail
         ; ControlClick, x30 y300,  Inbox.*\scbrodski@gmail.com\s-\sGmail ahk_class Chrome_WidgetWin_1,, LEFT, 1, NA
         ;ControlClick, x1133 y681, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1,, LEFT, 1, NA
+F3:: 
 
+    ControlSend, , ^r, Episode 48 | See You in My 19th Life.*
+    ;Send, ^r
+    return
 F9::
+    x := 0
+
     Loop, 30
     {
+        ;MsgBox, BAMMMM! + %x%
+
+       ; x++
+      ;  Sleep, 3600
+     ;   if Mod(x,2) = 0 {
+    ;        x := 0
+   ;         MsgBox, "SHAXAM"
+
+  ;      ControlSend, , {F5}, (4) League of Legends - Twitch — Mozilla Firefox ahk_class MozillaWindowClass
+            ; Send, {F5}
+ ;       }
+;        Sleep, 1000
 
         WinActivate, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1
         

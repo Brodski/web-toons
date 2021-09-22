@@ -13,69 +13,44 @@
 
 (function() {
     'use strict';
-
-  // @match        https://www.webtoons.com/member/join?loginType=EMAIL
-  // @include      https://www.webtoons.com/*
-  // @include      https://global.apis.naver.com/*
-  // @grant        --u--nsafeWindow
-  // @unwrapped
-
-
-    console.log = function (message) {
-        if (false) {
-            console.dir(message)
-        }
-    }
-
-    const action = {
-        createAccounts: "createAccounts",
-        upVote: "upVote",
-    }
-
-    const storageKeys = {
-        whichAction: "whichAction",
-        isRunning: "isRunning",
-
-        emailName: "emailName",
-        pass: "pass",
-        nickname: "nickname",
-
-        startAtEmail: "startAtEmail",
-        numEmails: "numEmails",
-
-        emailIndex: "emailIndex",
-        botIndex: "botIndex",
-        pageIndex: "pageIndex",
-        isSwitchAccounts: "isSwitchAccounts"
-
-    }
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////           Emailed (Shared configs                /////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // "Base" email used for eveything.
-    // It's a "base" email b/c all bots will look like "biggerpenisthanyoulol+0@gmail.com" , 0=some number
-    let email = "biggerpenisthanyoulol@outlook.com"
-    // let email = "cbrodski@gmail.com"
+    let email = "biggerpenisthanyoulol@outlook.com" // "Base" email used for eveything. ---- It's a "base" email b/c all bots will look like "biggerpenisthanyoulol+0@gmail.com" , 0=some number
     let pw = "extrem3Pass!"
-
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////        Upvote Configs                     ////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    let numUpVotes = 3 // numUpVotes <= the number of your 'bots' --- Each page gets x "numUpVotes"
+    let startAtAccount = 0
+    let allPagesToUpVote = [ "https://www.webtoons.com/en/romance/see-you-in-my-19th-life/episode-48/viewer?title_no=1266&episode_no=48",
+    //                   "https://www.webtoons.com/en/challenge/austinxmatty/3/viewer?title_no=663995&episode_no=11",
+    //                   "https://www.webtoons.com/en/challenge/austinxmatty/100-subs/viewer?title_no=663995&episode_no=6"
+                            ]
+    let restPerPage = 0     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
+    let restPerAccount =  0 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
+  
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////        Create Account Configs             ////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     let nickname = "Super_geranimo_"
     // let nickname = "xxpoopysoupxx"
-    let startAtEmail = 190
-    let numEmails = 60
+    let startAtEmail = 250
+    let numEmails = 1
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Keep track of the number of your bots
+    // If first time running this, then set "startAtEmail" = 0
+    // password = <whatever you want>
+    // nickname = <whatever you want>
+    // email    = <a real email you will use>
+    // numEmails    = <the number of new bots to make>
+    // startAtEmail = <the bot 'number' you want to make>,
+        // ---> this is for when you want to make make more bots next week or w/e
 
-    // FOR YOUR FIRST TIME CREATING BOTS THE "startAtEmail" VARIABLE MUST BE 0
-    // Fill in your password and "base" nickname and "base" email
-    // Fill in startAtEmail=<the bot 'number' you want to make>, this is for when you want to make make more bots next week or w/e
-    // numEmails=<the number of new bots to make>
-
+    ///////////////////////////////////////////////////////////////////////////////////
     // You don't have to worry about this, but here is what is happening if you care:
     // If your configs are this:
     //      email = "geranimosexualmail@gmail.com"
@@ -91,51 +66,22 @@
     //  geranimosexualmail+13@gmail.com / geranimoSexual_13
     //
     //  Password is "extrem3Pass!" for every account (no quotes). Don't worry about it, but the script will use this password to log in
-
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////        Upvote Configs                     ////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // numUpVotes must be equal to or less than the number of your 'bots'
-    // Each page gets x "numUpVotes" (eg 10 upvotes to each page)
-    let numUpVotes = 250
-    let startAtAccount = 0
-    let allPagesToUpVote = [ "https://www.webtoons.com/en/challenge/austinxmatty/3/viewer?title_no=663995&episode_no=11",
-//                            "https://www.webtoons.com/en/challenge/austinxmatty/100-subs/viewer?title_no=663995&episode_no=6"
-                            ]
-    let restPerPage = 0     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
-    let restPerAccount =  0 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  console.log = function (message) {
+    if (false) {
+        console.dir(message)
+    }
+}
     document.cookie = "needCOPPA=false; domain=.webtoons.com; path=/"
     let whichAction = sessionStorage.getItem("whichAction")
     let isRunning = sessionStorage.getItem("isRunning")
 
-
-    var script = document.createElement('script');
-    script.innerHTML = `
-      function sayingHi() {
-          console.log("HELLO MOTHER FUCKER!")
-          document.getElementById("btnLogin").click()
-      }
-      async function doLogin2() {
-
-      }
-
-      function sleep2(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
-      }
-
-    `
-    document.getElementsByTagName('head')[0].appendChild(script)
 
     window.addEventListener('load', (event) => {
       if (sessionStorage.getItem("isRunning") != 'true') {
@@ -155,6 +101,7 @@
               color: #fff;
               margin-left: 12px;
               margin-top: -3px;
+              cursor: pointer;
           }`;
           document.getElementsByTagName('head')[0].appendChild(style)
           let buttonToFunction = [kickOffAccountMaking, kickOffUpVoting]
@@ -165,7 +112,7 @@
               btn.innerHTML = buttonToNames[i]
               btn.classList.add("cssClass")
               btn.addEventListener("click", buttonToFunction[i])
-              btn.addEventListener("click", renderTip)
+            //   btn.addEventListener("click", renderTip)
 
               let header = document.getElementById("header")
               if (header && header.getElementsByClassName("lk_creators")[0]) {
@@ -209,12 +156,30 @@
 
   //   unsafeWindow.__kickOffAccountMaking = kickOffAccountMaking
   //   unsafeWindow.__kickOffUpVoting = kickOffUpVoting
-
-
   //   unsafeWindow.__commandUpVoting = commandUpVoting
   //   unsafeWindow.__doLogin = doLogin
   //   unsafeWindow.__doLogoutAndRefresh = doLogoutAndRefresh
   //   unsafeWindow.__doUpvote = doUpvote
+
+
+    const action = {
+        createAccounts: "createAccounts",
+        upVote: "upVote",
+    }
+
+    const storageKeys = {
+        whichAction: "whichAction",
+        isRunning: "isRunning",
+        emailName: "emailName",
+        pass: "pass",
+        nickname: "nickname",
+        startAtEmail: "startAtEmail",
+        numEmails: "numEmails",
+        emailIndex: "emailIndex",
+        botIndex: "botIndex",
+        pageIndex: "pageIndex",
+        isSwitchAccounts: "isSwitchAccounts"
+    }
 
 
     async function run() {
@@ -258,10 +223,6 @@
     } else if (document.getElementById("header")) {
         document.getElementById("header").appendChild(myDiv)
     }
-
-
-
-
    }
 
     function kickOffAccountMaking(){
@@ -349,11 +310,9 @@
             let event7 = document.createEvent('Event');
             event7.initEvent('blur', true, true);
             document.getElementById("pw").dispatchEvent(event7)
+            await sleep(100)
 
             console.log('Creating - filling form 4.3')
-            await sleep(500)
-
-            console.log('Creating - filling form 5')
             let event8 = document.createEvent('Event');
             event8.initEvent('blur', true, true);
             document.getElementById("retype_pw").dispatchEvent(event8)
@@ -419,7 +378,7 @@
         if (sessionStorage.getItem("isSwitchAccounts_login") == "true" && !isLogged()) {
             console.log("commandUpVoting - log in")
             sessionStorage.setItem("isSwitchAccounts_login", false)
-            await sleep(300)
+            await sleep(200)
             return doLogin()
         }
 
@@ -515,13 +474,12 @@
             console.log("doUpVote -USER IS NOT LOGGED IN ?!")
             return false
         } else {
-            await doReadyCheck()
-            await sleep(200)
             let like = document.getElementById("likeItButton")
             let subscribe = document.getElementById("footer_favorites")
             like.scrollIntoView()
             window.scrollBy(0,-150)
-            await sleep(1000)
+            await doReadyCheck()
+            await sleep(200)
             let isLikeOn = like.getElementsByClassName("_btnLike")[0].classList.contains("on")
             let isSubbedOn = subscribe.classList.contains("on")
 
@@ -535,7 +493,7 @@
                 await sleep(50)
             }
 
-            await sleep(100)
+            // await sleep(100)
         }
     }
 
@@ -548,19 +506,6 @@
         //       VVV                                VVV       //
         //        V                                  V        //
 
-  //   function helloIt() {
-  //       console.log("hello !!! ")
-  //       console.log("hello !!! ")
-  //       console.log("hello !!! ")
-  //       console.log("hello !!! ")
-  //   }
-
-  //   function testHello() {
-  //       window.__helloIt()
-  //   }
-
-  //   unsafeWindow.__helloIt = helloIt
-  //   unsafeWindow.__testHello = testHello
 
     async function doLogin() {
         await doReadyCheck()
@@ -584,21 +529,29 @@
             document.getElementById("likeItButton").click()
         }
 
-        await sleep(500)
+        // await sleep(500)
         console.log("Logging in - filling out form...")
+
 
         let preEmail = email.split("@")
         let loginEmail = preEmail[0] + "+" + sessionStorage.getItem("botIndex") + "@" + preEmail[1]
 
-        await sleep(200)
+        await sleep(50)
         document.getElementById("emailId").value = loginEmail
-        await sleep(200)
+        await sleep(50)
         document.getElementById("password").value = pw
-        await sleep(300)
+        await sleep(50)
 
+        console.log('inc focus')
+        const evt2 = new Event("focus", {"view": window, "bubbles":true, "cancelable":false});
+        document.getElementsByClassName("t_login")[0].textContent = "Focusd!" 
+        document.getElementById("password").dispatchEvent(evt2)
+
+        console.log('inc click')
+        await sleep(500)
         document.getElementsByClassName("NPI=a:email")[0].click()
         console.log("Logging in - CLICK!")
-        await sleep(300)
+        // await sleep(300)
         return
 
     }
