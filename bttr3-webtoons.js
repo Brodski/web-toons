@@ -260,7 +260,8 @@
         console.log("loop are we gonna run 2?" , getEmailIndex() <= endAtEmail)
         console.log("loop are we gonna run 3?" , getEmailIndex() != null)
         try {
-            while (sessionStorage.getItem("isRunning") === "true" && getEmailIndex() <= endAtEmail && getEmailIndex() != null) {
+            // while (sessionStorage.getItem("isRunning") === "true" && getEmailIndex() <= endAtEmail && getEmailIndex() != null) {
+            if (sessionStorage.getItem("isRunning") === "true" && getEmailIndex() <= endAtEmail && getEmailIndex() != null) {
                 console.log("loop - going into creating ")
                 await createNextAccount()
 
@@ -273,8 +274,10 @@
                 await doReadyCheck()
 
                 // "refresh"
+                await sleep(1000)
                 console.log("refreshing")
                 window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
+                
             }
         } catch(e) {
             console.log("Catch, something went wrong ", e)
@@ -325,7 +328,7 @@
 
             console.log("Creating - click!!!")
 
-            await sleep(500)
+            await sleep(1000)
             document.getElementsByClassName("NPI=a:signup")[0].click()
             console.log("Creating - Waiting 1 seconds")
         }
