@@ -36,7 +36,7 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let nickname = "Roger_Murtaugh_"
     // let nickname = "xxpoopysoupxx"
-    let startAtEmail = 1
+    let startAtEmail = 10
     let numEmails = 5
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,12 +133,12 @@
         let emailIndex = parseInt(sessionStorage.getItem("emailIndex"))
 
         if (sessionStorage.getItem("isRunning") != 'true' ) {
-          // console.log("Loaded - AccountMaking - startAtEmail=", startAtEmail)
-          // console.log("Loaded - AccountMaking - emailIndex=", emailIndex)
-          // console.log("Loaded - AccountMaking - endAtEmail=", endAtEmail)
-          console.log("Loaded - Upvote - numUpVotes=", numUpVotes)
-          console.log("Loaded - Upvote - restPerPage=", restPerPage)
-          console.log("Loaded - Upvote - restPerAccount=", restPerAccount)
+          console.log("Loaded - AccountMaking - startAtEmail=", startAtEmail)
+          console.log("Loaded - AccountMaking - emailIndex=", emailIndex)
+          console.log("Loaded - AccountMaking - endAtEmail=", endAtEmail)
+        //   console.log("Loaded - Upvote - numUpVotes=", numUpVotes)
+        //   console.log("Loaded - Upvote - restPerPage=", restPerPage)
+        //   console.log("Loaded - Upvote - restPerAccount=", restPerAccount)
         }
 
         if (emailIndex > endAtEmail) {
@@ -245,7 +245,7 @@
 
 
     async function loopCreateAccounts() {
-
+        await doReadyCheck()
         let endAtEmail = startAtEmail + numEmails
         console.log("loop - startAtEmail=", startAtEmail)
         console.log("loop - endAtEmail=", endAtEmail)
@@ -270,6 +270,11 @@
                 }
                 console.log("loop - incrementing ", getEmailIndex())
                 incrementEmailIndex();
+                await doReadyCheck()
+
+                // "refresh"
+                console.log("refreshing")
+                window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
             }
         } catch(e) {
             console.log("Catch, something went wrong ", e)
@@ -301,17 +306,17 @@
             console.log("emailInput.value=", emailInput.value, "pw1Input.value=",pw1Input.value, "pw2Input.value=",pw2Input.value, "nicknameInput.value=",nicknameInput.value )
 
             emailInput.value = newEmail
-            await sleep(100)
+            await sleep(300)
             pw1Input.value = pw
-            await sleep(100)
+            await sleep(300)
             pw2Input.value = pw
-            await sleep(100)
+            await sleep(300)
             nicknameInput.value =  nickname + sessionStorage.getItem("emailIndex")
 
             let event7 = document.createEvent('Event');
             event7.initEvent('blur', true, true);
             document.getElementById("pw").dispatchEvent(event7)
-            await sleep(100)
+            await sleep(300)
 
             console.log('Creating - filling form 4.3')
             let event8 = document.createEvent('Event');
@@ -323,12 +328,6 @@
             await sleep(500)
             document.getElementsByClassName("NPI=a:signup")[0].click()
             console.log("Creating - Waiting 1 seconds")
-            await sleep(1000)
-
-            // "refresh"
-            console.log("refreshing")
-
-           window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
         }
     }
 
