@@ -23,19 +23,6 @@ F9::
 
     Loop, 30
     {
-        ;MsgBox, BAMMMM! + %x%
-
-       ; x++
-      ;  Sleep, 3600
-     ;   if Mod(x,2) = 0 {
-    ;        x := 0
-   ;         MsgBox, "SHAXAM"
-
-  ;      ControlSend, , {F5}, (4) League of Legends - Twitch — Mozilla Firefox ahk_class MozillaWindowClass
-            ; Send, {F5}
- ;       }
-;        Sleep, 1000
-
         WinActivate, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1
         
         ; Click Email
@@ -50,7 +37,6 @@ F9::
         ControlClick, x428 y28, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1,, MIDDLE, 1, NA
         Sleep, 716
         ; Click, 428, 28, Middle
-
         
 
         ; Delete email
