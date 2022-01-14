@@ -12,7 +12,7 @@ F10::
     Pause
 
 F9::
-    Loop, 6
+    Loop, 199
     {
 
         Sleep, 263

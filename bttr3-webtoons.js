@@ -22,9 +22,9 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////        Upvote Configs                     ////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    let numUpVotes = 3 // numUpVotes <= the number of your 'bots' --- Each page gets x "numUpVotes"
+    let numUpVotes = 250 // numUpVotes <= the number of your 'bots' --- Each page gets x "numUpVotes"
     let startAtAccount = 0
-    let allPagesToUpVote = [ "https://www.webtoons.com/en/romance/see-you-in-my-19th-life/episode-48/viewer?title_no=1266&episode_no=48",
+    let allPagesToUpVote = [ "https://www.webtoons.com/en/challenge/austinxmatty/sadness/viewer?title_no=663995&episode_no=13",
     //                   "https://www.webtoons.com/en/challenge/austinxmatty/3/viewer?title_no=663995&episode_no=11",
     //                   "https://www.webtoons.com/en/challenge/austinxmatty/100-subs/viewer?title_no=663995&episode_no=6"
                             ]
@@ -34,7 +34,8 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////        Create Account Configs             ////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    let nickname = "Roger_Murtaugh_"
+    // let nickname = "Roger_Murtaugh_"
+    let nickname = "super_geranimo_"
     // let nickname = "xxpoopysoupxx"
     let startAtEmail = 10
     let numEmails = 5
@@ -107,7 +108,7 @@
           document.getElementsByTagName('head')[0].appendChild(style)
           let buttonToFunction = [kickOffAccountMaking, kickOffUpVoting]
           let buttonToNames = ["Make Accounts", "Send Likes"]
-          console.log("ADDING BUTONS??!")
+          
           for (let i=0; i< buttonToFunction.length; i++) {
               let btn = document.createElement("button")
               btn.innerHTML = buttonToNames[i]
@@ -124,43 +125,19 @@
           }
       }
     })
+    
+    if (document.readyState == "ready") {
+        goBabygo()
+    }
 
-    window.addEventListener('load', (event) => {
+    window.addEventListener('load', (event) => {    
+        console.log("loaded ! ! !")
+        goBabygo()
 
-        console.log("Loaded - isRunning ", isRunning);
-
-        let endAtEmail = startAtEmail + numEmails
-        let emailIndex = parseInt(sessionStorage.getItem("emailIndex"))
-
-        if (sessionStorage.getItem("isRunning") != 'true' ) {
-          console.log("Loaded - AccountMaking - startAtEmail=", startAtEmail)
-          console.log("Loaded - AccountMaking - emailIndex=", emailIndex)
-          console.log("Loaded - AccountMaking - endAtEmail=", endAtEmail)
-        //   console.log("Loaded - Upvote - numUpVotes=", numUpVotes)
-        //   console.log("Loaded - Upvote - restPerPage=", restPerPage)
-        //   console.log("Loaded - Upvote - restPerAccount=", restPerAccount)
-        }
-
-        if (emailIndex > endAtEmail) {
-            sessionStorage.setItem("isRunning",false)
-            sessionStorage.setItem("emailIndex", 0)
-            console.log("Loaded - Ending it 1")
-        }
-
-        if (isRunning == "true") {
-            console.log("Loaded - IN RUN!!!!!!")
-            run()
-        }
       });
 
     console.log("adding cool functions....")
 
-  //   unsafeWindow.__kickOffAccountMaking = kickOffAccountMaking
-  //   unsafeWindow.__kickOffUpVoting = kickOffUpVoting
-  //   unsafeWindow.__commandUpVoting = commandUpVoting
-  //   unsafeWindow.__doLogin = doLogin
-  //   unsafeWindow.__doLogoutAndRefresh = doLogoutAndRefresh
-  //   unsafeWindow.__doUpvote = doUpvote
 
 
     const action = {
@@ -183,6 +160,38 @@
     }
 
 
+    function goBabygo() {
+        if (window.hasGoBabyGo) {
+            console.log("has go baby go, returning")
+            return
+        }
+        window.hasGoBabyGo = true
+        console.log("Loaded - isRunning ", isRunning);
+
+        let endAtEmail = startAtEmail + numEmails
+        let emailIndex = parseInt(sessionStorage.getItem("emailIndex"))
+
+        if (sessionStorage.getItem("isRunning") != 'true' ) {
+          console.log("Loaded - AccountMaking - startAtEmail=", startAtEmail)
+          console.log("Loaded - AccountMaking - emailIndex=", emailIndex)
+          console.log("Loaded - AccountMaking - endAtEmail=", endAtEmail)
+        //   console.log("Loaded - Upvote - numUpVotes=", numUpVotes)
+        //   console.log("Loaded - Upvote - restPerPage=", restPerPage)
+        //   console.log("Loaded - Upvote - restPerAccount=", restPerAccount)
+        }
+
+        if (emailIndex > endAtEmail) {
+            sessionStorage.setItem("isRunning",false)
+            sessionStorage.setItem("emailIndex", 0)
+            console.log("Loaded - Ending it 1")
+        }
+
+        if (isRunning == "true") {
+            console.log("Loaded - IN RUN!!!!!!")
+            return run()
+        }
+
+    }
     async function run() {
         console.log("---------- COMMAND -------------")
         if (whichAction == action.createAccounts) {
@@ -274,9 +283,10 @@
                 await doReadyCheck()
 
                 // "refresh"
-                await sleep(1000)
+                await sleep(300)
                 console.log("refreshing")
-                window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
+                return window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
+                
                 
             }
         } catch(e) {
@@ -306,8 +316,6 @@
             let pw2Input = document.getElementById("retype_pw")
             let nicknameInput = document.getElementById("nickname")
 
-            console.log("emailInput.value=", emailInput.value, "pw1Input.value=",pw1Input.value, "pw2Input.value=",pw2Input.value, "nicknameInput.value=",nicknameInput.value )
-
             emailInput.value = newEmail
             await sleep(300)
             pw1Input.value = pw
@@ -316,19 +324,23 @@
             await sleep(300)
             nicknameInput.value =  nickname + sessionStorage.getItem("emailIndex")
 
+            console.log("emailInput.value=", emailInput.value, "pw1Input.value=",pw1Input.value, "pw2Input.value=",pw2Input.value, "nicknameInput.value=",nicknameInput.value )
+
+
             let event7 = document.createEvent('Event');
             event7.initEvent('blur', true, true);
             document.getElementById("pw").dispatchEvent(event7)
-            await sleep(300)
+            await sleep(400)
 
             console.log('Creating - filling form 4.3')
             let event8 = document.createEvent('Event');
             event8.initEvent('blur', true, true);
             document.getElementById("retype_pw").dispatchEvent(event8)
+            await sleep(400)
 
             console.log("Creating - click!!!")
 
-            await sleep(1000)
+            await sleep(400)
             document.getElementsByClassName("NPI=a:signup")[0].click()
             console.log("Creating - Waiting 1 seconds")
         }
@@ -466,6 +478,7 @@
     }
 
     async function doUpvote() {
+        await doReadyCheck()
         if (!isLogged()) {
             console.log("doUpVote -USER IS NOT LOGGED IN ?!")
             console.log("doUpVote -USER IS NOT LOGGED IN ?!")
@@ -482,18 +495,18 @@
             like.scrollIntoView()
             window.scrollBy(0,-150)
             await doReadyCheck()
-            await sleep(200)
+            await sleep(1000)
             let isLikeOn = like.getElementsByClassName("_btnLike")[0].classList.contains("on")
             let isSubbedOn = subscribe.classList.contains("on")
 
             if (!isLikeOn) {
                 like.click()
-                await sleep(50)
+                await sleep(1000)
             }
 
             if (!isSubbedOn) {
                 subscribe.click()
-                await sleep(50)
+                await sleep(1000)
             }
 
             // await sleep(100)
@@ -513,7 +526,7 @@
     async function doLogin() {
         await doReadyCheck()
         console.log("Logging in")
-        await sleep(1000)
+        await sleep(5000)
 
         if (isLogged()) {
             console.log("User is already logged!!! Nothing to do.")
@@ -539,11 +552,11 @@
         let preEmail = email.split("@")
         let loginEmail = preEmail[0] + "+" + sessionStorage.getItem("botIndex") + "@" + preEmail[1]
 
-        await sleep(50)
+        await sleep(150)
         document.getElementById("emailId").value = loginEmail
-        await sleep(50)
+        await sleep(450)
         document.getElementById("password").value = pw
-        await sleep(50)
+        await sleep(450)
 
         console.log('inc focus')
         const evt2 = new Event("focus", {"view": window, "bubbles":true, "cancelable":false});
@@ -551,7 +564,7 @@
         document.getElementById("password").dispatchEvent(evt2)
 
         console.log('inc click')
-        await sleep(500)
+        await sleep(1000)
         document.getElementsByClassName("NPI=a:email")[0].click()
         console.log("Logging in - CLICK!")
         // await sleep(300)
