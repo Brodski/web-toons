@@ -17,7 +17,6 @@ F9::
 
         Sleep, 263
         ;WinActivate, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1
-        ;WinActivate, Inbox.*\scbrodski@gmail.com\s-\sGmail ahk_class Chrome_WidgetWin_1
         WinActivate, Inbox.*\sitsjustbeenrevoked123@gmail.com\s-\sGmail ahk_class Chrome_WidgetWin_1
 
         ; Click Email

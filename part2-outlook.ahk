@@ -3,15 +3,15 @@ SetTitleMatchMode, RegEx
 MsgBox F9 to being email loop `n`n F10 pause. `n`n f12 get ud
 
 F12::
-    WinActivate, Inbox.*\scbrodski@gmail.com\s-\sGmail
+    WinActivate, Inbox.*\sitsjustbeenrevoked123@gmail.com\s-\sGmail
     ; WinActivate, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1
     ; MsgBox, %ActiveWindowID%
     return
 F10::
     Pause
 
-        ; WinActivate, Inbox.*\scbrodski@gmail.com\s-\sGmail
-        ; ControlClick, x30 y300,  Inbox.*\scbrodski@gmail.com\s-\sGmail ahk_class Chrome_WidgetWin_1,, LEFT, 1, NA
+        ; WinActivate, Inbox.*\sitsjustbeenrevoked123@gmail.com\s-\sGmail
+        ; ControlClick, x30 y300,  Inbox.*\sitsjustbeenrevoked123@gmail.com\s-\sGmail ahk_class Chrome_WidgetWin_1,, LEFT, 1, NA
         ;ControlClick, x1133 y681, Mail - john jackson - Outlook - Google Chrome ahk_class Chrome_WidgetWin_1,, LEFT, 1, NA
 F3:: 
 
