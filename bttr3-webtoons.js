@@ -86,7 +86,11 @@
 
 
     window.addEventListener('load', (event) => {
+      console.log("window.load event")
+      console.log("window.load event - sessionStorage.getItem(isRunning) " , sessionStorage.getItem("isRunning") )
+      console.log("window.load event - sessionStorage.getItem(isRunning) " , sessionStorage.getItem("isRunning") != 'true')
       if (sessionStorage.getItem("isRunning") != 'true') {
+        console.log("window.load event - is true")
           var style = document.createElement('style');
           // style.type = 'text/css';
           style.innerHTML = `.cssClass { color: #F00;
@@ -127,14 +131,15 @@
     })
     
     if (document.readyState == "ready") {
+        console.log("document.readyState - goBabygo()")
         goBabygo()
+    } else {
+        window.addEventListener('load', (event) => {    
+            console.log("loaded ! ! !")
+            goBabygo()
+        });
     }
 
-    window.addEventListener('load', (event) => {    
-        console.log("loaded ! ! !")
-        goBabygo()
-
-      });
 
     console.log("adding cool functions....")
 
@@ -162,7 +167,7 @@
 
     function goBabygo() {
         if (window.hasGoBabyGo) {
-            console.log("has go baby go, returning")
+            console.log("isRunning - has go baby go, returning")
             return
         }
         window.hasGoBabyGo = true
@@ -195,11 +200,12 @@
     async function run() {
         console.log("---------- COMMAND -------------")
         if (whichAction == action.createAccounts) {
+            console.log("run - Creating Accounts ... ")
             await loopCreateAccounts()
         }
 
         if (whichAction == action.upVote) {
-            console.log("Upvoting ... ")
+            console.log("run - Upvoting ... ")
             await commandUpVoting()
         }
         console.log("---------- OUT -------------")
@@ -241,7 +247,7 @@
             alert("Log out then try again");
             return
         }
-
+        console.log("kickOffAccountMaking        0")
         whichAction = sessionStorage.setItem("whichAction" , action.createAccounts)
         sessionStorage.setItem("emailIndex" , startAtEmail)
         sessionStorage.setItem("isRunning" , true)
@@ -379,6 +385,7 @@
     async function commandUpVoting() {
         // once the script logs out it has to refresh the page, thus these 2 if's
         document.cookie = "needCOPPA=false; domain=.webtoons.com"
+        console.log("commandUpVoting - ")
         // console.log("commandUpVoting - isSwitchAccounts_logout=", sessionStorage.getItem("isSwitchAccounts_logout"))
         // console.log("commandUpVoting - isSwitchAccounts_login=", sessionStorage.getItem("isSwitchAccounts_login"))
         await doReadyCheck()
@@ -455,6 +462,7 @@
     }
 
     async function doLogoutAndGo2Home() {
+        console.log("doLogoutAndRefresh - 1")
 
         await doReadyCheck()
         // document.cookie = "NEO_SES= ; path=/; domain=.webtoons.com; expires = Thu, 01 Jan 1970 00:00:00 GMT";
@@ -490,6 +498,7 @@
             console.log("doUpVote -USER IS NOT LOGGED IN ?!")
             return false
         } else {
+            console.log("doUpVote - 0")
             let like = document.getElementById("likeItButton")
             let subscribe = document.getElementById("footer_favorites")
             like.scrollIntoView()
@@ -498,15 +507,18 @@
             await sleep(1000)
             let isLikeOn = like.getElementsByClassName("_btnLike")[0].classList.contains("on")
             let isSubbedOn = subscribe.classList.contains("on")
+            console.log("doUpVote - 1")
 
             if (!isLikeOn) {
                 like.click()
                 await sleep(1000)
+                console.log("doUpVote - 2 - like")
             }
 
             if (!isSubbedOn) {
                 subscribe.click()
                 await sleep(1000)
+                console.log("doUpVote - 2 - lisubke")
             }
 
             // await sleep(100)
@@ -585,6 +597,7 @@
 
 
     function deleteAllCookies() {
+        console.log("deleteAllCookies - 0")
       var cookies = document.cookie.split(";");
 
       for (var i = 0; i < cookies.length; i++) {
@@ -612,8 +625,10 @@
     function isLogged() {
         let token = document.cookie.split("; ").find(x => x.startsWith('NEO_SES'))
         if (token == null) {
+            console.log("isLogged token == null")
             return false
         } else {
+            console.log("isLogged token ! = null")
             return true
         }
 
