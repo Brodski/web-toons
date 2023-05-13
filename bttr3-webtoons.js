@@ -13,31 +13,35 @@
 
 (function() {
     'use strict';
+    const usernames = ["alphafox","amazingjazz","angrybird","applerider","aquawolf","aspiringcoder","autumndream","backpacker","badgerlover","beachcomber","beardboss","beautifulmind","bestbud","bigdreamer","birdwatcher","blackbelt","blackcat","bluesky","butterfly","californiagal","camerashy","candycane","captainamerica","carrottop","catlover","chasingdreams","cheesehead","cherryblossom","chessmaster","chicagolife","chocolateaddict","citysoul","climbinghigh","coffeeholic","collegekid","comicbooknerd","coolbreeze","cosmicdreamer","countrylife","crazydoglady","creativeforce","crimsonking","crossfitjunkie","crystalclear","dancingqueen","darkhorse","daydreamer","deepspace","desertflower","diamondgirl","divein","doglover","dragonfly","dreamchaser","dreamweaver","drummingirl","duskrunner","earlybird","eastcoast","electricguitar","emeraldgreen","endlessadventures","eternaloptimist","explorer","fairydust","fallenangel","familyman","fancyfeast","fastlane","featheredfriend","fieryred","fifthelement","fireball","firefly","fisherman","flamingo","flashback","floralprint","flowerchild","flyinghigh","forevergreen","fossilhunter","freebird","freedomfighter","freshstart","frontrow","funkyfresh","futuremillionaire","galacticexplorer","gardenlover","geekygirl","gemstone","ghosthunter","gingerbread","givingheart","glitterbomb","gogetter","goldcoast","goldenretriever","goodvibesonly","gratefulheart","greatgatsby","greeneyedgirl","guitarhero","harvestmoon","hawaiilife","heartbreaker","heavymetal","highfives","hiphoppin","honeybadger","horselover","hotchocolate","humblebeginnings","huntingseason","icequeen","imagination","infinitypool","innerpeace","inspiration","ironman","islandlife","ivorytower","jazzhands","OtakuOracle","MangaMaster","ChibiChampion","TsundereTitan","KawaiiKnight","SailorSenshi","ShinigamiShadow","ShoujoStar","MechaMaverick","KaijuKing","NarutoNinja","OnePiecePirate","TitanTamer","AlchemistAce","GhibliGuru","SpiritedSpirit","SenpaiSupreme","DeathNoteDiva","AttackOnOtaku","FullmetalFanatic","SaiyanScholar","JutsuJedi","ZanpakutoZealot","DragonBallDynamo","CosplayCrusader","TotoroSpirit","JellalFernandes","AstaWarrior","AkihiroSword","AkiraSoul","AllukaZoldyck","AsunaKnight","ByakuyaKuchiki","CielPhantomhive","ChikaFujiwara","DazaiOsamu","DekuHero","ErenYeager","ErzaScarlet","EdwardElric","GintokiSakata","GonFreecss","GrayFullbuster","GohanSSJ2","HikariYagami","HisokaMorow","HinataHyuga","HieiJagan","InuyashaDog","ItachiUchiha","IchigoKurosaki","JotaroKujo","JuviaLockser","KakashiHatake","KilluaZoldyck","KatsukiBakugo","KenshinHimura","LelouchLamperouge","LucyHeartfilia","LightYagami","LeviAckerman","MikasaAckerman","MakaAlbarn","MidoriyaIzuku","NamiNavigator","NarutoUzumaki","NatsuDragneel","NezukoKamado","OchacoUraraka","ObitoUchiha","RenjiAbarai","RukiaKuchiki","RoronoaZoro","RyukoMatoi","SaberFate","SaitamaOnePunch","ShotoTodoroki","SpikeSpiegel","SanjiBlackleg","SakuraHaruno","SasukeUchiha","ShinichiKudo","SousukeSagara","ShikamaruNara","ShinyaKogami","ShouyouHinata","TodorokiShoto","TrafalgarLaw","VegetaPrince","YugiMuto","YuYuHakusho","YusukeUrameshi","ZeroKiryu","ZerefDragneel","AlphonseElric","AllenWalker","ArminArlert","AyameSoma","AsukaLangley","Belldandy","ByakkoSuzaku","CCCode","CeltySturluson","ChopperTonyTony","DIOBrando","EchidnaWitch","ErinaNakiri","EtoYoshimura","FayeValentine","FujiwaraNoSai","GajeelRedfox","GasaiYuno","GriffithFemto","HachimanHikigaya","HajimeIppo","HanekawaTsubasa","HaruhiSuzumiya","HatsuneMiku","HeiDark","HoloWolf","HomuraAkemi","HitsugayaToshiro","IbaraShiozaki","IzayaOri","JosukeHigashikata","JunpeiHyoudou","JibrilFlugel","KaedeKayano","KagomeHigurashi","KallenStadtfeld","KanekiKen","KanadeTachibana","KazumaSatou","KibaInuzuka","KiritoBlackSword","KiyotakaAyanokouji","KonanPaperAngel","KoroSensei","KurisuMakise","KyokoSakura","LuffyMonkeyD","LightHoshikawa","MadaraUchiha","MeguminExplosion","MeliodasDragon","MioAkiyama","MiraiKuriyama","MomoYaoyorozu","NagisaShiota","NanamiMomozono","NanaOsaki","NatsuhiUshiromiya","NiaTeppelin","NicoRobin","OgaTatsumi","OkabeRintarou","OrihimeInoue","OsamuDazai","RizaHawkeye","RockLee","RoyMustang","RuiTachibana","RyoukoAsakura","SaberAlter","SadakoYamamura","SangoDemonSlayer","SayaKisaragi","SeiyaKou","SenkuIshigami","ShinobuKochou","ShionSonozaki","SubaruNatsuki","SuzakuKururugi","TaigaAisaka","TetsuoShima","TsubasaOzora","TaichiYagami","TrafalgarDWater","TsunadeSama","TsubakiNakatsukasa","UryuuIshida","UsagiTsukino","UtaTokyoGhoul","UltearMilkovich","UzuiTengen","VegetaSaiyanPrince","VashTheStampede","VioletEvergarden","VictorNikiforov","VanessaEnoteca","WhitebeardEdward","WendyMarvell","WinryRockbell","WrathFullmetal","WatashiJinrui","XerxesBreak","X1999_","XanxusVaria","XenoviaQuarta","XingkeLi","YamiSukehiro","YatoGod","YuichiroHyakuya","YokoLittner","YunoGasai","ZerefDragneel","ZeroTwo","ZenitsuAgatsuma","ZoroRoronoa","ZidaneTribal"]
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////           Emailed (Shared configs                /////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // let email = "biggerpenisthanyoulol@outlook.com" // "Base" email used for eveything. ---- It's a "base" email b/c all bots will look like "biggerpenisthanyoulol+0@gmail.com" , 0=some number
-    let email = "itsjustbeenrevoked123@gmail.com"
+    let email = "biggerpenisthanyoulol@outlook.com" // "Base" email used for eveything. ---- It's a "base" email b/c all bots will look like "biggerpenisthanyoulol+0@gmail.com" , 0=some number
+    //let email = "itsjustbeenrevoked123@gmail.com"
     let pw = "extrem3Pass!"
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////        Upvote Configs                     ////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    let numUpVotes = 250 // numUpVotes <= the number of your 'bots' --- Each page gets x "numUpVotes"
-    let startAtAccount = 0
-    let allPagesToUpVote = [ "https://www.webtoons.com/en/challenge/austinxmatty/sadness/viewer?title_no=663995&episode_no=13",
-    //                   "https://www.webtoons.com/en/challenge/austinxmatty/3/viewer?title_no=663995&episode_no=11",
-    //                   "https://www.webtoons.com/en/challenge/austinxmatty/100-subs/viewer?title_no=663995&episode_no=6"
+    let numUpVotes = 12 // numUpVotes = STARTS FROM startAtAccount GOES TO numUpVotes. numUpVotes <= the number of your 'bots' --- Each page gets x "numUpVotes"
+    let startAtAccount = 10
+    let mainPageTo5Star = "https://www.webtoons.com/en/romance/secretarys-escape/list?title_no=5182"
+    let allPagesToUpVote = [ "https://www.webtoons.com/en/romance/secretarys-escape/episode-1/viewer?title_no=5182&episode_no=1",
+                             "https://www.webtoons.com/en/romance/secretarys-escape/episode-2/viewer?title_no=5182&episode_no=2",
+                              mainPageTo5Star
                             ]
-    let restPerPage = 0     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
-    let restPerAccount =  0 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
+    let restPerPage = 2     //In seconds. Bot will wait x seconds until it moves onto the next page. Could be 0
+    let restPerAccount =  1 //In seconds. Bot will wait x seconds until it logins into next bot. Could be 0
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////        Create Account Configs             ////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // let nickname = "Roger_Murtaugh_"
-    let nickname = "super_geranimo_"
+    // let nickname = "big_fan_AI34"
+    // let nickname = "super_geranimo_"
     // let nickname = "xxpoopysoupxx"
-    let startAtEmail = 10
+    let nickname = usernames[Math.floor(Math.random()*usernames.length)]
+    let startAtEmail = 250
     let numEmails = 5
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +116,7 @@
           document.getElementsByTagName('head')[0].appendChild(style)
           let buttonToFunction = [kickOffAccountMaking, kickOffUpVoting]
           let buttonToNames = ["Make Accounts", "Send Likes"]
-          
+
           for (let i=0; i< buttonToFunction.length; i++) {
               let btn = document.createElement("button")
               btn.innerHTML = buttonToNames[i]
@@ -129,12 +133,12 @@
           }
       }
     })
-    
+
     if (document.readyState == "ready") {
         console.log("document.readyState - goBabygo()")
         goBabygo()
     } else {
-        window.addEventListener('load', (event) => {    
+        window.addEventListener('load', (event) => {
             console.log("loaded ! ! !")
             goBabygo()
         });
@@ -292,8 +296,8 @@
                 await sleep(300)
                 console.log("refreshing")
                 return window.location.href = 'https://www.webtoons.com/member/join?loginType=EMAIL';
-                
-                
+
+
             }
         } catch(e) {
             console.log("Catch, something went wrong ", e)
@@ -499,6 +503,17 @@
             return false
         } else {
             console.log("doUpVote - 0")
+            // Do 5 start stuff
+            if (window.location.href === mainPageTo5Star) {
+                console.log("doUpVote - adding 5 stars")
+                await sleep(2100);
+                document.querySelector("#_rateButton")?.click()
+                document.querySelector(".ly_grade a[title='10']")?.click()
+                await sleep(10);
+                document.querySelector(".ly_grade .grade_btn a[title='Send']")?.click()
+                await sleep(1000);
+                return
+            }
             let like = document.getElementById("likeItButton")
             let subscribe = document.getElementById("footer_favorites")
             like.scrollIntoView()
