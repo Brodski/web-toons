@@ -570,7 +570,6 @@
             document.getElementById("likeItButton").click()
         }
 
-        // await sleep(500)
         console.log("Logging in - filling out form...")
 
 
@@ -578,25 +577,19 @@
         let loginEmail = preEmail[0] + "+" + sessionStorage.getItem("botIndex") + "@" + preEmail[1]
 
         await sleep(150)
-        // document.getElementById("emailId").value = loginEmail
         document.getElementById("email_address").value = loginEmail
         await sleep(450)
-        // document.getElementById("password").value = pw
         document.getElementById("email_password").value = pw
         await sleep(450)
 
         console.log('inc focus')
         const evt2 = new Event("focus", {"view": window, "bubbles":true, "cancelable":false});
-        // document.getElementsByClassName("t_login")[0].textContent = "Focusd!"
-        // document.getElementById("password").dispatchEvent(evt2)
         document.getElementById("email_password").dispatchEvent(evt2)
 
         console.log('inc click')
         await sleep(1000)
-        // document.getElementsByClassName("NPI=a:email")[0].click()
         document.querySelector("button.login_btn.type_green._emailLoginButton").click()
         console.log("Logging in - CLICK!")
-        // await sleep(300)
         return
 
     }
