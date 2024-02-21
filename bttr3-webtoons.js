@@ -562,10 +562,7 @@
         if ( document.getElementById("btnLogin")){
             console.log("Logging in - btnLogin")
             const evt = new Event("click", {"view": window, "bubbles":true, "cancelable":false});
-            // document.getElementById("btnLogin").dispatchEvent(evt4)
-            //   const evt = new Event("click", {"view": window, "bubbles":true, "cancelable":false});
-            await sleep(200)
-            // document.getElementById("btnLogin").dispatchEvent(evt)
+            document.getElementById("btnLogin").dispatchEvent(evt)
             document.querySelector("._loginLayer ._btnLoginEmail").dispatchEvent(evt)
         }
         else if (document.getElementById("likeItButton")) {
